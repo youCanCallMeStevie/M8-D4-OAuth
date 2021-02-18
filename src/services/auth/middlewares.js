@@ -5,7 +5,7 @@ const authorize = async (req, res, next) => {
   try {
     //const token = req.header("Authorization").replace("Bearer ", "")
 
-    const token = req.cookies.accessToken
+    const token = req.cookies.accessToken //comes with cookieParsar, and cookies is a field of the headers & will find the cookies in side
     const decoded = await verifyAccessToken(token)
     const user = await UserModel.findOne({ _id: decoded._id })
     if (!user) throw new Error()
